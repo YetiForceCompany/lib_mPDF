@@ -30644,8 +30644,12 @@ class mPDF
 			} else {
 				$size *= $maxsize * 2;
 			}
-		} else
+		} else {
+			if (is_string($size)) {
+				$size = 0;
+			} /* fix height: auto issue - https://github.com/mpdf/mpdf/issues/294 */
 			$size *= (25.4 / $this->dpi); //nothing == px
+		}
 
 		return $size;
 	}
